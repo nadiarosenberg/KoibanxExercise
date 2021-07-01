@@ -1,10 +1,10 @@
-var broad = [
-  [1, 1, 1], 
-  [0, 0, 0], 
-  [2, 2, 2]
+var board = [
+  [2, 1, 1], 
+  [2, 2, 0], 
+  [2, 1, 2]
 ]
 
-function isHorizontalWin(row){
+function isWin(row){
   a = '1,1,1'
   b = '2,2,2'
   row = row.toString();
@@ -18,14 +18,28 @@ function isHorizontalWin(row){
   }
 }
 
-function isSolved(broad){
+function getColumn(anArray, columnNumber) {
+    return anArray.map(function(row) {
+        return row[columnNumber];
+    });
+}
+
+function isSolved(board){
   i = 0
-  for (i; i<3; i++){
-    result = isHorizontalWin(broad[i])
+  for (i; i<board.length; i++){
+    result = isWin(board[i])
+    if (result == 1 | result == 2){
+      return result
+    }
+  }
+  i = 0
+  for (i; i<board.length; i++){
+    column = (getColumn(board, i))
+    result = isWin(column)
     if (result == 1 | result == 2){
       return result
     }
   }
 }
 
-isSolved(broad)
+isSolved(board)
