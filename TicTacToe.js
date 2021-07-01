@@ -1,6 +1,6 @@
 var board = [
-  [1, 2, 1], 
-  [2, 1, 0], 
+  [1, 2, 2], 
+  [1, 0, 1], 
   [1, 2, 1]
 ]
 
@@ -35,6 +35,14 @@ function getDiagonal(array){
   return diagonal 
 }
 
+function isCatsGame(array){
+  if (array.includes(1) & array.includes(2)){
+    return 0
+  }else{
+    return -1
+  }
+}
+
 function isSolved(board){
   i = 0
   for (i; i<board.length; i++){
@@ -62,6 +70,16 @@ function isSolved(board){
   if (result == 1 | result == 2){
     return result
   }
+  i = 0
+  result = []
+  for (i; i<board.length; i++){
+    result.push(isCatsGame(board[i]))
+  }
+  if (result.includes(-1)){
+    return -1
+  }else{
+    return 0
+  }
 }
 
-isSolved(board)
+console.log(isSolved(board))
