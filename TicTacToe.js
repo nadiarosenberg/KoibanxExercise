@@ -1,20 +1,21 @@
+'use strict'
 var board = [
   [1, 2, 2], 
   [1, 0, 1], 
   [1, 2, 1]
-]
+];
 
 function isWin(array){
-  a = '1,1,1'
-  b = '2,2,2'
+  let a = '1,1,1';
+  let b = '2,2,2';
   array = array.toString();
   if (array == a){
-    return 1
+    return 1;
   }
   if (array == b){
-    return 2
+    return 2;
   }else{
-    return false 
+    return false; 
   }
 }
 
@@ -25,61 +26,63 @@ function getColumn(array, columnNumber) {
 }
 
 function getDiagonal(array){
-  i = 0
-  j = 0
-  diagonal = []
+  let i = 0;
+  let j = 0;
+  var diagonal = [];
   for (i; i<array.length; i++){
-    diagonal.push(array[i][j])
-    j++
+    diagonal.push(array[i][j]);
+    j++;
   }
-  return diagonal 
+  return diagonal; 
 }
 
 function isCatsGame(array){
   if (array.includes(1) & array.includes(2)){
-    return 0
+    return 0;
   }else{
-    return -1
+    return -1;
   }
 }
 
 function isSolved(board){
-  i = 0
+  var i = 0;
   for (i; i<board.length; i++){
-    result = isWin(board[i])
+    let result = isWin(board[i]);
     if (result == 1 | result == 2){
-      return result
+      return result;
     }
   }
-  i = 0
+  i = 0;
   for (i; i<board.length; i++){
-    column = (getColumn(board, i))
-    result = isWin(column)
+    let column = (getColumn(board, i));
+    let result = isWin(column);
     if (result == 1 | result == 2){
-      return result
+      return result;
     }
   }
-  mainDiagonal = getDiagonal(board)
-  result = isWin(mainDiagonal)
+  var mainDiagonal = getDiagonal(board);
+  var result = isWin(mainDiagonal);
   if (result == 1 | result == 2){
-    return result
+    return result;
   }
-  board = board.reverse()
-  secondaryDiagonal = getDiagonal(board)
-  result = isWin(secondaryDiagonal)
+  board = board.reverse();
+  var secondaryDiagonal = getDiagonal(board);
+  result = isWin(secondaryDiagonal);
   if (result == 1 | result == 2){
-    return result
+    return result;
   }
-  i = 0
-  result = []
+  i = 0;
+  result = [];
   for (i; i<board.length; i++){
-    result.push(isCatsGame(board[i]))
+    result.push(isCatsGame(board[i]));
   }
   if (result.includes(-1)){
-    return -1
+    return -1;
   }else{
-    return 0
+    return 0;
   }
 }
 
-console.log(isSolved(board))
+console.log(isSolved(board));
+
+module.exports = {isSolved}
